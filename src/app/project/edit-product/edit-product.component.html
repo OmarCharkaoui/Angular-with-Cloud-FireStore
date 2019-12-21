@@ -1,0 +1,63 @@
+<div class="container">
+    <h1 class="text-center display-4"> Edit Product </h1>
+    <mat-divider></mat-divider>
+    <form #form="ngForm" (submit)="onEdit()">
+        <input type="hidden" #id="ngModel" name="id" [(ngModel)]="productUser.id" />
+        <div class="example-container">
+            <mat-form-field>
+                <input matInput placeholder="title" #title="ngModel" name="title" [(ngModel)]="productUser.title"
+                    required minlength="2">
+                <mat-error *ngIf="title.errors?.required && title.touched">
+                    title is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="title.errors?.minlength && title.touched">
+                    title required Length atleast<strong>
+                        {{title.errors?.minlength?.requiredLength}} Characters</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="author" #author="ngModel" name="author" [(ngModel)]="productUser.author"
+                    required minlength="5">
+                <mat-error *ngIf="author.errors?.required && author.touched">
+                    author is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="author.errors?.minlength && author.touched">
+                    author required Length atleast<strong>
+                        {{author.errors?.minlength?.requiredLength}} Characters</strong>
+                </mat-error>
+
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="price" type="number" #price="ngModel" name="price"
+                    [(ngModel)]="productUser.price" required>
+                <span matSuffix>$&nbsp;</span>
+                <mat-error *ngIf="price.errors?.required && price.touched">
+                    price is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <textarea matInput placeholder="description" #description="ngModel" name="description"
+                    [(ngModel)]="productUser.description" required minlength="10"></textarea>
+                <mat-error *ngIf="description.errors?.required && description.touched">
+                    description is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="description.errors?.minlength && description.touched">
+                    description required Length atleast<strong>
+                        {{description.errors?.minlength?.requiredLength}} Characters</strong>
+                </mat-error>
+            </mat-form-field>
+            <div class="btn-style">
+                <button class="btn btn-primary" [disabled]="!form.valid">Save</button>
+                <a class="btn btn-secondary" [routerLink]="['/home']">Cancel</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<!--  // id: string;
+  // title: string;
+  // description: string;
+  // author:string;
+  // price:Number; -->

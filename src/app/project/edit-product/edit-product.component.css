@@ -1,0 +1,18 @@
+.example-container {
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 80%;
+    margin-top: 20px;
+  }
+  .btn-style{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .btn-style .btn{
+    margin-right: 5px;
+  }

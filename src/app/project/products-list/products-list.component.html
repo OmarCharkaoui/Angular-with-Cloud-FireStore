@@ -1,0 +1,82 @@
+
+<h1 class="text-center display-4" > Products </h1>
+<mat-divider></mat-divider>
+   <div class="row align-items-center" >
+    <div class="col-md-2">
+        <button  mat-raised-button color="primary" [routerLink]="['/create']"  >Create</button>
+    </div>
+    <div class="col-md-8">
+        <mat-form-field class="ExampleStyle " >
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+        </div>
+    <div class="col-md-2" >
+      <span > Total Price :<strong>{{getTotalPrice() | currency}}</strong> </span>
+    </div>
+   </div>
+    <div class="mt-2 mat-elevation-z8" >
+        <mat-table [dataSource]="dataSource"  matSort   >
+
+                  <!-- ID Column -->
+<!--                  
+                  <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef  > Id </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+                  </ng-container> -->
+             
+          
+
+            <!-- Title Column -->
+            <ng-container matColumnDef="title">
+              <mat-header-cell *matHeaderCellDef mat-sort-header > Title </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+             
+            </ng-container>
+          
+            <!-- Description Column -->
+            <ng-container matColumnDef="description">
+              <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+              <mat-cell  *matCellDef="let element"> <small>{{element.description}}</small> </mat-cell>
+            </ng-container>
+          
+            <!-- Author Column -->
+            <ng-container matColumnDef="author">
+              <mat-header-cell *matHeaderCellDef mat-sort-header > Author </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.author}} </mat-cell>
+            </ng-container>
+          
+            <!-- Price Column -->
+            <ng-container matColumnDef="price">
+              <mat-header-cell *matHeaderCellDef mat-sort-header > Price </mat-header-cell>
+              <mat-cell *matCellDef="let element"> <strong>{{element.price | currency }}</strong>  </mat-cell>
+            </ng-container>
+          
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef > Actions </mat-header-cell>
+              
+              <mat-cell *matCellDef="let element" > 
+              <span><i [routerLink]="['/edit']" [queryParams]="{ id: element.id}" class="far fa-edit btn btn-link text-warning"></i></span>
+              <span><i  (click)="onDelete(element.id)" class="far fa-trash-alt btn btn-link text-danger"></i></span>
+              </mat-cell>
+      
+         
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+           
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+
+
+<!--  -->
+
+
+<!-- 
+https://www.techiediaries.com/angular-firestore-tutorial/
+https://www.npmjs.com/package/ngx-toastr
+https://github.com/angular/angularfire/blob/master/docs/firestore/documents.md
+https://material.angular.io/components/table/examples
+
+ -->
